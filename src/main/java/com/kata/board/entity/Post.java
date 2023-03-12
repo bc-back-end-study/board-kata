@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -29,23 +30,17 @@ public class Post extends BaseEntity {
     private String content;
 
     @Comment("조회 수")
-    private Integer view = 0;
+    private Integer view;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
     @Builder
     private Post(final String title, final String content, final Integer view, final User user) {
         this.title = title;
         this.content = content;
-        this.view = viewCountValid(view);
+        this.view = view;
         this.user = user;
-    }
-
-    private Integer viewCountValid(final Integer view) {
-        if (view == null || view < 0) {
-            throw new IllegalStateException("조회 수는 0보다 작을 수 없습니다.");
-        }
-        return view;
     }
 }
