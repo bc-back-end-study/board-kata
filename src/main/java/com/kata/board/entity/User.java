@@ -1,10 +1,7 @@
 package com.kata.board.entity;
 
 import jakarta.annotation.Generated;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
@@ -17,6 +14,10 @@ public class User {
     String password;
     String nickname;
     String email;
+    @Column(name = "created_date")
+
     LocalDateTime createdDate;
+    @Column(name = "modified_date")
+
     LocalDateTime modifiedDate;
 }

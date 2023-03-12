@@ -11,7 +11,9 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String replay;
+    @Column(name = "created_date")
     private LocalDateTime createdDate;
+    @Column(name = "modified_date")
     private LocalDateTime modifiedDate;
     private Long postId;
     private Long userId;
