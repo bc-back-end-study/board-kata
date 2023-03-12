@@ -25,6 +25,7 @@ dependencies {
             'org.jetbrains.kotlin:kotlin-reflect',
             'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
     )
+    implementation 'org.projectlombok:lombok:1.18.22'
 
 }
 
