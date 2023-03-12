@@ -22,7 +22,7 @@ class Post constructor(
     @Comment("이메일")
     private val email: String,
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private val user: User
 ): BaseEntity()

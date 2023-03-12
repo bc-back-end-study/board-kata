@@ -13,9 +13,9 @@ class Comment constructor(
     @Comment("댓글")
     private val reply: String,
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private val post: Post,
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private val user: User
 ): BaseEntity()
