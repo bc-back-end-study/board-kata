@@ -23,9 +23,13 @@ dependencies {
 
             'com.fasterxml.jackson.module:jackson-module-kotlin',
             'org.jetbrains.kotlin:kotlin-reflect',
-            'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+            'org.jetbrains.kotlin:kotlin-stdlib-jdk8',
+            'org.projectlombok:lombok:1.18.22'
     )
-    implementation 'org.projectlombok:lombok:1.18.22'
+
+    annotationProcessor (
+            'org.projectlombok:lombok',
+    )
 
 }
 
