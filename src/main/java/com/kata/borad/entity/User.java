@@ -1,20 +1,21 @@
 package com.kata.borad.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@Entity
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
+    @Id
     private long id;
     private String userName;
     private String password;
     private String nickname;
     private String email;
 
-    public User(long id, String userName, String password, String nickname, String email) {
-        this.id = id;
-        this.userName = userName;
-        this.password = password;
-        this.nickname = nickname;
-        this.email = email;
-    }
 }
