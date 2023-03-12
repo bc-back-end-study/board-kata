@@ -30,10 +30,9 @@ public class Post extends BaseEntity {
     private String content;
 
     @Comment("조회 수")
-    private Integer view;
+    private Integer view = 0;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
     private User user;
 
     @Builder
