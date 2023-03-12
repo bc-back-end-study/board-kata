@@ -1,4 +1,4 @@
-package entity;
+package com.kata.borad.entity;
 
 import lombok.Getter;
 
