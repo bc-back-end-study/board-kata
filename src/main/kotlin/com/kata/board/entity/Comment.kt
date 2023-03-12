@@ -4,7 +4,7 @@ import jakarta.persistence.*
 import org.hibernate.annotations.Comment
 
 @Entity
-data class Comment (
+class Comment constructor(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private val id: Long,
