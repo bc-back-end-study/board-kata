@@ -11,11 +11,11 @@ class Comment constructor(
 
     @Column(columnDefinition = "TEXT")
     @Comment("댓글")
-    private val reply: String,
+    private var reply: String,
 
     @ManyToOne(fetch = FetchType.LAZY)
     private val post: Post,
 
     @ManyToOne(fetch = FetchType.LAZY)
     private val user: User
-): BaseEntity()
+) : BaseEntity()

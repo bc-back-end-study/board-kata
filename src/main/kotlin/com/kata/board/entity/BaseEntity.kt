@@ -9,9 +9,10 @@ import java.time.LocalDateTime
 
 @MappedSuperclass
 @EntityListeners(value = [AuditingEntityListener::class])
-open class BaseEntity{
+open class BaseEntity {
+
     @CreatedDate
-    private lateinit var createdDate: LocalDateTime
+    private val createdDate: LocalDateTime = LocalDateTime.MIN
 
     @LastModifiedDate
     private lateinit var modifiedDate: LocalDateTime
