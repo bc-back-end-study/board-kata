@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @AllArgsConstructor
@@ -17,5 +19,7 @@ public class User {
     private String password;
     private String nickname;
     private String email;
+    private LocalDateTime createdDate;
+    private LocalDateTime modifiedDate;
 
 }

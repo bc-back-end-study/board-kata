@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @AllArgsConstructor
@@ -14,6 +16,8 @@ public class Comment {
     @Id
     private long id;
     private String reply;
+    private LocalDateTime createdDate;
+    private LocalDateTime modifiedDate;
     private long postId;
     private long userId;
 

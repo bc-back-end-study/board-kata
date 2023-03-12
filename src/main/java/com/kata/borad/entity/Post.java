@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @AllArgsConstructor
@@ -16,6 +18,8 @@ public class Post {
     private String title;
     private String content;
     private int view;
+    private LocalDateTime createdDate;
+    private LocalDateTime modifiedDate;
     private long userId;
 
 }
