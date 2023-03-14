@@ -1,0 +1,7 @@
+spring:
+    datasource:
+        hikari:
+            driver-class-name: com.mysql.cj.jdbc.Driver
+            jdbc-url: ENC(VKEmtvjal8xYwOqoqzxjhUDUgtS3R6CELRTUWvf/9pgtDGjcHkJOP9TDdP+gM62d)
+            username: ENC(TWGJRmsvlssmIkBDuHGEQA==)
+            password: ENC(hO9mqaM3sPf04w0oajjYOMwMRkfJHHj2)
