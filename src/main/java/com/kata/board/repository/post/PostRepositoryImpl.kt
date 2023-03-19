@@ -1,17 +1,18 @@
-package com.kata.board.repository
+package com.kata.board.repository.post
 
 import com.kata.board.entity.Post
+import com.kata.board.repository.BoardJpaRepository
 import org.springframework.beans.factory.annotation.Autowired
 
 class PostRepositoryImpl @Autowired constructor(
-    private val boardRepository: BoardRepository,
+    private val boardJpaRepository: BoardJpaRepository,
 ): PostRepository {
     override fun getPost(id: Long): Post {
-        return boardRepository.findById(id).get()
+        return boardJpaRepository.findById(id).get()
     }
 
     override fun getAllPost(): List<Post> {
-        return boardRepository.findAll()
+        return boardJpaRepository.findAll()
     }
 
 
