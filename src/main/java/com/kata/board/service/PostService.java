@@ -12,9 +12,9 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class PostService {
-    private PostRepository postRepository;
+    private final PostRepository postRepository;
 
-    public List<PostDto> getPostList(Long id){
+    public List<PostDto> getPostList(){
         return postRepository.findAllBy().stream().map(Post::makeToPostDto)
                 .collect(Collectors.toList());
     }
