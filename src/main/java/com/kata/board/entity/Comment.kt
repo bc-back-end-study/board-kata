@@ -1,5 +1,6 @@
 package com.kata.board.entity
 
+import com.kata.board.post.domain.Post
 import jakarta.persistence.*
 
 @Entity

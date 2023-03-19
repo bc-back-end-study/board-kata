@@ -1,5 +1,7 @@
-package com.kata.board.entity
+package com.kata.board.post.domain
 
+import com.kata.board.entity.BaseEntity
+import com.kata.board.entity.User
 import jakarta.persistence.*
 import org.hibernate.annotations.Comment
 
