@@ -28,10 +28,12 @@ class PostServiceTest(
         //then
         val result = findAllPagenatedPost.content[0]
         assertAll({
+            assertThat(result.id).isEqualTo(1L)
             assertThat(result.title).isEqualTo("제목")
             assertThat(result.content).isEqualTo("내용")
             assertThat(result.username).isEqualTo("유저명")
-            assertThat(result.viewCount).isZero()
+            assertThat(result.viewCount).isZero
+            assertThat(result.createdDate).isNotNull()
         })
     }
 }
