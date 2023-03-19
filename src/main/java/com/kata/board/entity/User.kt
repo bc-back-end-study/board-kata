@@ -19,6 +19,7 @@ class User(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null
+    private set
 
     @Comment("유저명")
     var username: String = username

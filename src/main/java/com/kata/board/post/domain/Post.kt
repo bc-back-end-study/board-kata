@@ -16,10 +16,12 @@ class Post(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null
+    var id: Long? = null
+    private set
 
     @Comment("조회 수")
     var view: Int = 0
+    private set
 
     @Comment("제목")
     var title: String = title
