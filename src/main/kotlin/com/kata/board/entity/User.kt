@@ -13,7 +13,7 @@ class User constructor(
     private val id: Long,
 
     @Comment("유저명")
-    private var userName: String,
+    var userName: String,
 
     @Comment("비밀번호")
     private var password: String,

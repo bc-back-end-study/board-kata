@@ -1,13 +1,15 @@
 package com.kata.board.entity
 
+import com.kata.board.dto.PostDto
 import jakarta.persistence.*
 import org.hibernate.annotations.Comment
+import java.time.format.DateTimeFormatter
 
 @Entity
 class Post constructor(
 
     @Comment("제목")
-    private var title: String,
+    var title: String,
 
     @Column(columnDefinition = "TEXT")
     @Comment("내용")
@@ -20,7 +22,7 @@ class Post constructor(
 ) : BaseEntity() {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long? = null
+    private var id: Long? = null
 
     @Comment("조회수")
     private var view: Int = 0
