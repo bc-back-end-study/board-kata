@@ -10,4 +10,4 @@ spring:
       ddl-auto: create-drop
 jasypt:
   encryptor:
-    password: dltmdwo1!
+    password: testPassword
