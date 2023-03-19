@@ -24,4 +24,17 @@ class Post constructor(
 
     @Comment("조회수")
     private var view: Int = 0
+
+    fun mappingPostFromPostDto(): PostDto {
+        val dateFormat = DateTimeFormatter.ofPattern("yyyy.MM.dd")
+        return PostDto(
+            id = this.id ?: throw NullPointerException("Id Null Error"),
+            title = this.title,
+            userName = this.user.userName,
+            createdDate = this.createdDate?.format(dateFormat) ?: throw NullPointerException("Created Date Null Error"),
+            content = this.content,
+            view = this.view,
+        )
+    }
+
 }
