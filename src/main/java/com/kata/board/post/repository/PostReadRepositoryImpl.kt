@@ -11,8 +11,7 @@ class PostReadRepositoryImpl(
     private val postRepository: PostRepository
 ): PostReadRepository {
     override fun findAllPagenatedPost(pageable: Pageable): Page<Post> {
-        val findAll = postRepository.findAll(pageable)
-        return findAll
+        return postRepository.findAll(pageable)
     }
 
 }
