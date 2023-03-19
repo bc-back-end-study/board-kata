@@ -1,10 +1,12 @@
 package com.kata.board.entity;
 
+import com.kata.board.dto.PostDto;
 import jakarta.persistence.*;
-
+import lombok.Getter;
 import java.time.LocalDateTime;
 
 @Entity
+@Getter
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,4 +20,13 @@ public class Post {
     private LocalDateTime modifiedDate;
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
+    public static PostDto makeToPostDto(Post post) {
+        PostDto postDto = new PostDto();
+        postDto.setView(post.getView());
+        postDto.setTitle(post.getTitle());
+        postDto.setCreatedDate(post.getCreatedDate());
+        postDto.setId(post.getId());
+        postDto.setUserName(post.getUser().username);
+        return postDto;
+    }
 }

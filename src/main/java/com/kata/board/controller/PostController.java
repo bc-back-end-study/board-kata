@@ -1,2 +1,7 @@
-package com.kata.board.controller;public class PostController {
+package com.kata.board.controller;
+
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class PostController {
 }
