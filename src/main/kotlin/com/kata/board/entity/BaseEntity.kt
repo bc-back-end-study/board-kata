@@ -14,9 +14,9 @@ open class BaseEntity {
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
-    private var createdDate: LocalDateTime? = null
+    var createdDate: LocalDateTime? = null
 
     @LastModifiedDate
     @Column(nullable = false)
-    private var modifiedDate: LocalDateTime? = null
+    var modifiedDate: LocalDateTime? = null
 }
