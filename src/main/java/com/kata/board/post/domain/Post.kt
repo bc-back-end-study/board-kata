@@ -7,22 +7,30 @@ import org.hibernate.annotations.Comment
 
 @Entity
 class Post(
-    @Comment("제목")
-    private var title: String,
+    title: String,
 
-    @Comment("내용")
-    @Column(columnDefinition = "TEXT")
-    private var content: String,
+    content: String,
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private var user: User? = null
+    user: User
 ): BaseEntity() {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private val id: Long? = null
+    val id: Long? = null
 
     @Comment("조회 수")
-    private var view: Int = 0
+    var view: Int = 0
 
+    @Comment("제목")
+    var title: String = title
+    private set
+
+    @Comment("내용")
+    @Column(columnDefinition = "TEXT")
+    var content: String = content
+    private set
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    var user: User? = user
+    private set
 }

@@ -4,24 +4,36 @@ import jakarta.persistence.*
 import org.hibernate.annotations.Comment
 
 @Entity
+@Table(name = "`user`")
 class User(
-    @Comment("유저명")
-    private var username: String,
+    username: String,
 
-    @Comment("비밀번호")
-    private var password: String,
+    password: String,
 
-    @Comment("닉네임")
-    private var nickname: String,
+    nickname: String,
 
-    @Comment("이메일")
-    private val email: String
+    email: String
 
 ): BaseEntity() {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private var id: Long? = null
+    var id: Long? = null
 
+    @Comment("유저명")
+    var username: String = username
+    private set
+
+    @Comment("비밀번호")
+    var password: String = password
+    private set
+
+    @Comment("닉네임")
+    var nickname: String = nickname
+    private set
+
+    @Comment("이메일")
+    var email: String = email
+    private set
 
 }
