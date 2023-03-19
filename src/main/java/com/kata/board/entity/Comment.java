@@ -9,7 +9,7 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String replay;
+    private String reply;
     @Column(name = "created_date")
     private LocalDateTime createdDate;
     @Column(name = "modified_date")
@@ -17,6 +17,4 @@ public class Comment {
     private Long postId;
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
-
-
 }

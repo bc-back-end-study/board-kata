@@ -11,15 +11,11 @@ public class Post {
     private Long id;
     private String title;
     private String content;
-    private Integer view;
+    private int view;
     @Column(name = "created_date")
     private LocalDateTime createdDate;
     @Column(name = "modified_date")
     private LocalDateTime modifiedDate;
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
-
-
-
-
 }
