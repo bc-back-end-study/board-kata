@@ -18,7 +18,7 @@ class PostServiceTest(
 ) {
     @Test
     @DisplayName("게시글 페이징 조회 시 정상 반환")
-    fun Should_findAllPagenatedPost_When_getPostAll() {
+    fun `Should findAllPagenatedPost When getPostAll`() {
         //given
         postRepository.save(Post("제목", "내용", User("유저명", "123", "별명", "test@gmail.com")))
 
