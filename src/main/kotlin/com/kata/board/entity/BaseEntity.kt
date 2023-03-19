@@ -1,5 +1,6 @@
 package com.kata.board.entity
 
+import jakarta.persistence.Column
 import jakarta.persistence.EntityListeners
 import jakarta.persistence.MappedSuperclass
 import org.springframework.data.annotation.CreatedDate
@@ -12,8 +13,10 @@ import java.time.LocalDateTime
 open class BaseEntity {
 
     @CreatedDate
-    private val createdDate: LocalDateTime = LocalDateTime.MIN
+    @Column(nullable = false, updatable = false)
+    private var createdDate: LocalDateTime? = null
 
     @LastModifiedDate
-    private lateinit var modifiedDate: LocalDateTime
+    @Column(nullable = false)
+    private var modifiedDate: LocalDateTime? = null
 }
