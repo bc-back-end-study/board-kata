@@ -3,6 +3,7 @@ package com.kata.board.entity
 import com.kata.board.dto.PostDto
 import jakarta.persistence.*
 import org.hibernate.annotations.Comment
+import java.lang.IllegalArgumentException
 import java.time.format.DateTimeFormatter
 
 @Entity
@@ -29,10 +30,10 @@ class Post constructor(
 
     fun mappingPostFromPostDto(): PostDto {
         return PostDto(
-            id = this.id ?: throw NullPointerException("Id Null Error"),
+            id = this.id ?: throw IllegalArgumentException("Id Null Error"),
             title = this.title,
             userName = this.user.userName,
-            createdDate = this.createdDate?: throw NullPointerException("Created Time Null Error"),
+            createdDate = this.createdDate?: throw IllegalArgumentException("Created Time Null Error"),
             content = this.content,
             view = this.view,
         )
