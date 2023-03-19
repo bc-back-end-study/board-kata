@@ -1,6 +1,5 @@
 package com.kata.board.entity;
 
-import jakarta.annotation.Generated;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -15,9 +14,7 @@ public class User {
     String nickname;
     String email;
     @Column(name = "created_date")
-
     LocalDateTime createdDate;
     @Column(name = "modified_date")
-
     LocalDateTime modifiedDate;
 }

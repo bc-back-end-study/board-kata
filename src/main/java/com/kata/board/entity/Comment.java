@@ -2,7 +2,6 @@ package com.kata.board.entity;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -16,10 +15,7 @@ public class Comment {
     @Column(name = "modified_date")
     private LocalDateTime modifiedDate;
     private Long postId;
-    private Long userId;
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
     private User user;
 
 
