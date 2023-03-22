@@ -2,12 +2,11 @@ package com.kata.board.post.service.response
 
 import java.time.LocalDate
 
-class PagingResponse(
-    val id: Long,
-    val title: String,
-    val content: String,
-    val username: String,
-    val viewCount: Int,
-    val createdDate: LocalDate
-) {
-}
+data class PagingResponse(
+    val id: Long? = null,
+    val title: String? = null,
+    val content: String? = null,
+    val username: String? = null,
+    val viewCount: Int? = null,
+    val createdDate: LocalDate? = null
+)
