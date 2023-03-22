@@ -16,12 +16,12 @@ class PostService(
         val pagenatedPost = postReadRepository.findAllPagenatedPost(page)
         return pagenatedPost.map { post ->
             PagingResponse(
-                post.id!!,
+                post.id,
                 post.title,
                 post.content,
-                post.user!!.username,
+                post.user?.username,
                 post.view,
-                post.createdDate!!.toLocalDate()
+                post.convertToLocalDate()
             )
         }
     }
