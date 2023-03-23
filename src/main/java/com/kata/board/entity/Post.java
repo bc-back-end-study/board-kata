@@ -20,13 +20,5 @@ public class Post {
     private LocalDateTime modifiedDate;
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
-    public static PostDto makeToPostDto(Post post) {
-        PostDto postDto = new PostDto();
-        postDto.setView(post.getView());
-        postDto.setTitle(post.getTitle());
-        postDto.setCreatedDate(post.getCreatedDate());
-        postDto.setId(post.getId());
-        postDto.setUserName(post.getUser().username);
-        return postDto;
-    }
+
 }

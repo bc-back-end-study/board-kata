@@ -1,5 +1,6 @@
 package com.kata.board.dto;
 
+import com.kata.board.entity.Post;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,4 +16,13 @@ public class PostDto {
     private String userName;
     private int view;
     private LocalDateTime createdDate;
+    public static PostDto makeToPostDto(Post post) {
+        PostDto postDto = new PostDto();
+        postDto.setView(post.getView());
+        postDto.setTitle(post.getTitle());
+        postDto.setCreatedDate(post.getCreatedDate());
+        postDto.setId(post.getId());
+        postDto.setUserName(post.getUser().getUsername());
+        return postDto;
+    }
 }

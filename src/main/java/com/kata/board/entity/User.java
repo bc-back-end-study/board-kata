@@ -1,20 +1,22 @@
 package com.kata.board.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 
 @Entity
+@Getter
 public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    Long id;
-    String username;
-    String password;
-    String nickname;
-    String email;
+    private Long id;
+    private String username;
+    private String password;
+    private String nickname;
+    private String email;
     @Column(name = "created_date")
-    LocalDateTime createdDate;
+    private LocalDateTime createdDate;
     @Column(name = "modified_date")
-    LocalDateTime modifiedDate;
+    private LocalDateTime modifiedDate;
 }

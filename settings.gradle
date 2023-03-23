@@ -1,4 +1,5 @@
 rootProject.name = 'board-kata'
 include 'src:test:java'
 findProject(':src:test:java')?.name = 'java'
+include 'test'
 
