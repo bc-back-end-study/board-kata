@@ -1,4 +1,4 @@
-package com.kata.board.controller;
+package com.kata.boardkata.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

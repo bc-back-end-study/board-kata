@@ -1,5 +1,7 @@
+pluginManagement {
+	repositories {
+		maven { url 'https://repo.spring.io/milestone' }
+		gradlePluginPortal()
+	}
+}
 rootProject.name = 'board-kata'
-include 'src:test:java'
-findProject(':src:test:java')?.name = 'java'
-include 'test'
-

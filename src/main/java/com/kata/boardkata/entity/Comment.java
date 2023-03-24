@@ -1,22 +1,20 @@
-package com.kata.board.entity;
+package com.kata.boardkata.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Getter
-public class User {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Comment {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String username;
-    private String password;
-    private String nickname;
-    private String email;
+    private String reply;
     @Column(name = "created_date")
     private LocalDateTime createdDate;
     @Column(name = "modified_date")
     private LocalDateTime modifiedDate;
+    private Long postId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
 }

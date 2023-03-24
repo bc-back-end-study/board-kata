@@ -1,5 +1,5 @@
-package com.kata.board.response;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+package com.kata.boardkata.model.response;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
@@ -14,17 +14,13 @@ public class BaseResponse<T> {
     private Header header = new Header();
     private T body;
 
-    public BaseResponse(BaseStatusCode statusCode) {
-        setHeaderWithBaseStatusCode(statusCode);
+    public BaseResponse(T body) {
+        setHeaderWithBaseStatusCode(BaseStatusCode.SUCCESS);
+        this.body = body;
     }
-
     public BaseResponse(BaseStatusCode statusCode, T body) {
         setHeaderWithBaseStatusCode(statusCode);
         this.body = body;
-    }
-
-    public BaseResponse(BaseStatusCode statusCode, String message) {
-        setHeaderWithBaseStatusCodeAndMessage(statusCode, message);
     }
 
     public BaseResponse(BaseStatusCode statusCode, String message, T body) {
@@ -56,12 +52,9 @@ public class BaseResponse<T> {
         this.header.setMessage(message);
     }
 
-    @JsonIgnore
-    public boolean isSucceed() {
-        return (this.header.status == BaseStatusCode.SUCCESS.getStatus());
-    }
-
-    @Getter @Setter @ToString
+    @Getter
+    @Setter
+    @ToString
     @AllArgsConstructor
     @JsonPropertyOrder({"status", "message"})
     public static class Header {

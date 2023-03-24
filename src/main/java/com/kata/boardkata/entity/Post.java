@@ -1,8 +1,9 @@
-package com.kata.board.entity;
+package com.kata.boardkata.entity;
 
-import com.kata.board.dto.PostDto;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDateTime;
 
 @Entity

@@ -1,6 +1,6 @@
-package com.kata.board.dto;
+package com.kata.boardkata.model.dto;
 
-import com.kata.board.entity.Post;
+import com.kata.boardkata.entity.Post;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

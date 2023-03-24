@@ -1,4 +1,4 @@
-package com.kata.board.response;
+package com.kata.boardkata.model.response;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
