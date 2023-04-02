@@ -19,7 +19,8 @@ class DatabaseCleanup : InitializingBean {
 
     @Autowired
     private val jdbcTemplate: JdbcTemplate? = null
-    private var tableNames: MutableList<String>? = null
+    private var tableNames: List<String>? = null
+
     override fun afterPropertiesSet() {
         tableNames = ArrayList()
         try {
@@ -27,7 +28,9 @@ class DatabaseCleanup : InitializingBean {
             val tables: ResultSet = metaData.getTables(null, null, null, arrayOf("TABLE"))
             while (tables.next()) {
                 val tableName = tables.getString("TABLE_NAME")
-                (tableNames as ArrayList<String>).add(tableName)
+                if ("`user`" == tableName.lowercase() || "post" == tableName.lowercase() || "comment" == tableName.lowercase()) {
+                    (tableNames as ArrayList<String>).add(tableName)
+                }
             }
         } catch (e: Exception) {
             throw RuntimeException()
