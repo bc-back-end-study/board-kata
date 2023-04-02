@@ -10,11 +10,12 @@ import java.lang.StringBuilder
 class ExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException::class)
-    fun methodArgumentNotValidException(e: MethodArgumentNotValidException): ResponseEntity<String> {
+    fun methodArgumentNotValidException(e: MethodArgumentNotValidException): ResponseEntity<CommonResponse<Void>> {
         val builder = StringBuilder()
         for (fieldError in e.fieldErrors) {
-            builder.append(fieldError.defaultMessage).append("\n")
+            builder.append(fieldError.defaultMessage)
         }
-        return ResponseEntity.badRequest().body(builder.toString())
+
+        return ResponseEntity.badRequest().body(CommonResponse.badRequest(builder.toString()))
     }
 }
