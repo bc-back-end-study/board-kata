@@ -19,7 +19,7 @@ class UserServiceTest(
     }
 
     @Test
-    fun test() {
+    fun `Should find User`() {
         //given
         userRepository.save(User("테스트", "password", "별명", "test@email.com"))
 
