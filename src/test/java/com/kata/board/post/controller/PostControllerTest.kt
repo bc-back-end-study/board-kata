@@ -1,7 +1,6 @@
 package com.kata.board.post.controller
 
 import com.kata.board.post.service.PostService
-import com.kata.board.post.service.request.PostRequest
 import com.kata.board.post.service.response.PagingResponse
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
