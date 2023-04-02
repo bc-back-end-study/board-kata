@@ -6,4 +6,6 @@ interface PostService {
     fun getPost(id: Long): PostDto
 
     fun getAllPost(): List<PostDto>
+
+    fun savePost(postDto: PostDto): Long?
 }
