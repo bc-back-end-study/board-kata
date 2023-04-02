@@ -1,10 +1,12 @@
 package com.kata.board.post.controller
 
 import com.kata.board.post.service.PostService
+import com.kata.board.post.service.request.PostRequest
 import com.kata.board.post.service.response.PagingResponse
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.mockito.BDDMockito.doNothing
 import org.mockito.BDDMockito.`when`
 import org.mockito.Mockito
 import org.springframework.beans.factory.annotation.Autowired
@@ -12,8 +14,10 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.data.domain.PageImpl
 import org.springframework.data.domain.PageRequest
+import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.get
+import org.springframework.test.web.servlet.post
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers.print
 import org.springframework.test.web.servlet.setup.DefaultMockMvcBuilder
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
@@ -62,6 +66,89 @@ class PostControllerTest {
             .andExpect { jsonPath("$.content[0].content") { value("content")} }
             .andExpect { jsonPath("$.content[0].username") { value("username")} }
             .andExpect { jsonPath("$.content[0].viewCount") { value(1)} }
+    }
+
+    @Test
+    fun `Should Throw Exception When Title Is Null`() {
+        //given
+        val json = """
+                {
+                    "content": "content",
+                    "userId": 1
+                }
+            """
+
+        //when
+        registPost(json)
+
+        //then
+            .andExpect { status { isBadRequest() } }
+            .andExpect { jsonPath("$.status") { value(400)} }
+            .andExpect { jsonPath("$.message") { value("제목은 null 일 수 없습니다.")} }
+    }
+
+    @Test
+    fun `Should Throw Exception When content Is Null`() {
+        //given
+        val json = """
+                {
+                    "title": "title",                    
+                    "userId": 1
+                }
+            """
+
+        //when
+        registPost(json)
+
+            //then
+            .andExpect { status { isBadRequest() } }
+            .andExpect { jsonPath("$.status") { value(400)} }
+            .andExpect { jsonPath("$.message") { value("내용은 null 일 수 없습니다.")} }
+    }
+
+    @Test
+    fun `Should Throw Exception When userId Is Null`() {
+        //given
+        val json = """
+                {
+                    "title": "title",
+                    "content": "content"
+                }
+            """
+
+        //when
+        registPost(json)
+
+            //then
+            .andExpect { status { isBadRequest() } }
+            .andExpect { jsonPath("$.status") { value(400)} }
+            .andExpect { jsonPath("$.message") { value("유저 id는 필수 값입니다.")} }
+    }
+
+    private fun registPost(json: String) = mockMvc.post(POST_BASE_URL) {
+        content = json.trimIndent()
+        accept = MediaType.APPLICATION_JSON
+        contentType = MediaType.APPLICATION_JSON
+        characterEncoding = "utf-8"
+    }
+
+    @Test
+    fun `Should register post When registration Post`() {
+        //given
+        doNothing().`when`(postService).registerPost(any())
+        val json = """
+                {
+                    "title": "title",
+                    "content": "content",
+                    "userId": 1
+                }
+        """.trimIndent()
+
+        //when
+        registPost(json)
+
+        //then
+            .andExpect { status { isCreated() } }
     }
 
     @Suppress("UNCHECKED_CAST")
