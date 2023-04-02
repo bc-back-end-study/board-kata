@@ -8,10 +8,6 @@ import org.hibernate.annotations.Comment
 
 @Entity
 class User constructor(
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private val id: Long,
-
     @Comment("유저명")
     var userName: String,
 
@@ -23,4 +19,8 @@ class User constructor(
 
     @Comment("이메일")
     private var email: String
-) : BaseEntity()
+) : BaseEntity() {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private val id: Long? = null
+}
