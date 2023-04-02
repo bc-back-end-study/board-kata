@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("board")
+@RequestMapping("board/posts/v1")
 class PostController (
     private val postService: PostService
 ){
