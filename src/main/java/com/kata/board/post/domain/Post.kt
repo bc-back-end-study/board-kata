@@ -4,6 +4,8 @@ import com.kata.board.entity.BaseEntity
 import com.kata.board.entity.User
 import jakarta.persistence.*
 import org.hibernate.annotations.Comment
+import java.time.LocalDate
+import java.time.LocalDateTime
 
 @Entity
 class Post(
@@ -35,4 +37,5 @@ class Post(
     @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     var user: User? = user
     private set
+
 }

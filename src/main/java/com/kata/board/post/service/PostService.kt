@@ -1,5 +1,6 @@
 package com.kata.board.post.service
 
+import com.kata.board.post.domain.DateUtils
 import com.kata.board.post.domain.PostReadRepository
 import com.kata.board.post.service.response.PagingResponse
 import org.springframework.data.domain.Page
@@ -16,12 +17,12 @@ class PostService(
         val pagenatedPost = postReadRepository.findAllPagenatedPost(page)
         return pagenatedPost.map { post ->
             PagingResponse(
-                post.id!!,
+                post.id,
                 post.title,
                 post.content,
-                post.user!!.username,
+                post.user?.username,
                 post.view,
-                post.createdDate!!.toLocalDate()
+                DateUtils.convertToLocalDate(post.createdDate)
             )
         }
     }
