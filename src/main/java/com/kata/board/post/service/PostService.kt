@@ -1,5 +1,6 @@
 package com.kata.board.post.service
 
+import com.kata.board.post.domain.DateUtils
 import com.kata.board.post.domain.PostReadRepository
 import com.kata.board.post.service.response.PagingResponse
 import org.springframework.data.domain.Page
@@ -21,7 +22,7 @@ class PostService(
                 post.content,
                 post.user?.username,
                 post.view,
-                post.convertToLocalDate()
+                DateUtils.convertToLocalDate(post.createdDate)
             )
         }
     }

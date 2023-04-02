@@ -5,6 +5,7 @@ import com.kata.board.entity.User
 import jakarta.persistence.*
 import org.hibernate.annotations.Comment
 import java.time.LocalDate
+import java.time.LocalDateTime
 
 @Entity
 class Post(
@@ -37,7 +38,4 @@ class Post(
     var user: User? = user
     private set
 
-    fun convertToLocalDate(): LocalDate? {
-        return createdDate?.toLocalDate()
-    }
 }
