@@ -1,6 +1,6 @@
 package com.kata.board.user.service
 
-import com.kata.board.entity.User
+import com.kata.board.user.domain.User
 import com.kata.board.user.repository.UserRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional

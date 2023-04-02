@@ -1,9 +1,10 @@
 package com.kata.board.user.service
 
-import com.kata.board.entity.User
+import com.kata.board.user.domain.User
 import com.kata.board.user.repository.UserRepository
 import com.kata.board.util.BoardBootTest
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 
@@ -11,6 +12,11 @@ class UserServiceTest(
     @Autowired private val userService: UserService,
     @Autowired private val userRepository: UserRepository
 ): BoardBootTest() {
+
+    @AfterEach
+    fun clean() {
+        cleanup!!.execute()
+    }
 
     @Test
     fun test() {
