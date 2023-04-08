@@ -3,11 +3,11 @@ package com.kata.boardkata.model.response;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-@Getter @Setter @ToString
+@Getter
+@Setter
+@ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({"header", "body"})
 public class BaseResponse<T> {
@@ -57,7 +57,7 @@ public class BaseResponse<T> {
     @ToString
     @AllArgsConstructor
     @JsonPropertyOrder({"status", "message"})
-    public static class Header {
+    private static class Header {
         private int status;
         private String message;
 
