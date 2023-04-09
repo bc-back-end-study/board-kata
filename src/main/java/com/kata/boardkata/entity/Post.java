@@ -1,13 +1,15 @@
 package com.kata.boardkata.entity;
 
+import com.kata.boardkata.model.Vo.PostVo;
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
+@NoArgsConstructor
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,4 +24,13 @@ public class Post {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
+    public Post (PostVo postVo, User user) {
+        this.id = postVo.getId();
+        this.title = postVo.getTitle();
+        this.content = postVo.getContent();
+        this.view = postVo.getView();
+        this.createdDate = postVo.getCreatedDate();
+        this.modifiedDate = postVo.getModifiedDate();
+        this.user = user;
+    }
 }
