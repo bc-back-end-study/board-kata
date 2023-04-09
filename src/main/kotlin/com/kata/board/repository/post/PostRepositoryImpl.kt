@@ -22,7 +22,7 @@ class PostRepositoryImpl (
     }
 
     override fun savePost(postDto: PostDto): Post {
-        return boardJpaRepository.save(Post(content = postDto.content, title = postDto.title))
+        return boardJpaRepository.save(modelMapper.map(postDto,Post::class.java))
     }
 
     override fun deletePost(postDto: PostDto) {
