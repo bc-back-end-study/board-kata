@@ -1,18 +1,14 @@
 package com.kata.board.post.domain
 
 import com.kata.board.entity.BaseEntity
-import com.kata.board.entity.User
+import com.kata.board.user.domain.User
 import jakarta.persistence.*
 import org.hibernate.annotations.Comment
-import java.time.LocalDate
-import java.time.LocalDateTime
 
 @Entity
 class Post(
     title: String,
-
     content: String,
-
     user: User
 ): BaseEntity() {
 
