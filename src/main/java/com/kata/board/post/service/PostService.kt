@@ -5,8 +5,8 @@ import com.kata.board.post.domain.Post
 import com.kata.board.post.domain.PostCommandRepository
 import com.kata.board.post.domain.PostReadRepository
 import com.kata.board.post.service.request.PostRequest
+import com.kata.board.post.service.request.PostUpdateRequest
 import com.kata.board.post.service.response.PagingResponse
-import com.kata.board.user.service.UserService
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
@@ -14,10 +14,9 @@ import org.springframework.transaction.annotation.Transactional
 
 @Service
 @Transactional(readOnly = true)
-class PostService(
+class PostService (
     private val postReadRepository: PostReadRepository,
-    private val postCommandRepository: PostCommandRepository,
-    private val userService: UserService
+    private val postCommandRepository: PostCommandRepository
 ) {
     fun findAllPagenatedPost(page: Pageable): Page<PagingResponse> {
         val pagenatedPost = postReadRepository.findAllPagenatedPost(page)
@@ -26,7 +25,6 @@ class PostService(
                 post.id,
                 post.title,
                 post.content,
-                post.user?.username,
                 post.view,
                 DateUtils.convertToLocalDate(post.createdDate)
             )
@@ -35,7 +33,12 @@ class PostService(
 
     @Transactional
     fun registerPost(request: PostRequest) {
-        val user = userService.findUser(request.userId!!)
-        postCommandRepository.save(Post(request.title!!, request.content!!, user))
+        postCommandRepository.save(Post(request.title!!, request.content!!))
+    }
+
+    @Transactional
+    fun updatePost(id: Long, request: PostUpdateRequest) {
+        val post = postReadRepository.findById(id)
+        post.update(request.title, request.content)
     }
 }
