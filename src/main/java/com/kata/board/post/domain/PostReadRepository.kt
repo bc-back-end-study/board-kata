@@ -11,4 +11,5 @@ interface PostReadRepository {
      */
     fun findAllPagenatedPost(pageable: Pageable): Page<Post>
 
+    fun findById(id: Long): Post
 }
