@@ -1,32 +1,28 @@
-package com.kata.board.entity;
+package com.kata.boardkata.model.dto;
 
-import com.kata.board.dto.PostDto;
-import jakarta.persistence.*;
+import com.kata.boardkata.entity.Post;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.time.LocalDateTime;
 
-@Entity
 @Getter
-public class Post {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Setter
+@NoArgsConstructor
+public class PostDto {
     private Long id;
     private String title;
-    private String content;
+    private String userName;
     private int view;
-    @Column(name = "created_date")
     private LocalDateTime createdDate;
-    @Column(name = "modified_date")
-    private LocalDateTime modifiedDate;
-    @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
     public static PostDto makeToPostDto(Post post) {
         PostDto postDto = new PostDto();
         postDto.setView(post.getView());
         postDto.setTitle(post.getTitle());
         postDto.setCreatedDate(post.getCreatedDate());
         postDto.setId(post.getId());
-        postDto.setUserName(post.getUser().username);
+        postDto.setUserName(post.getUser().getUsername());
         return postDto;
     }
 }

@@ -1,4 +1,4 @@
-package com.kata.board.entity;
+package com.kata.boardkata.entity;
 
 import jakarta.persistence.*;
 
