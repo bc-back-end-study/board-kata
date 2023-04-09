@@ -26,6 +26,10 @@ class PostReadRepositoryImplTest {
             return Page.empty()
         }
 
+        override fun findById(id: Long): Post {
+            TODO("Not yet implemented")
+        }
+
     }
 }
 

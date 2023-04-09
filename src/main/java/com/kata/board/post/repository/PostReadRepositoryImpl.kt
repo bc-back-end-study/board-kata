@@ -14,4 +14,9 @@ class PostReadRepositoryImpl(
         return postRepository.findAll(pageable)
     }
 
+    override fun findById(id: Long): Post {
+        return postRepository.findById(id)
+            .orElseThrow { RuntimeException("게시글을 찾을 수 없습니다.") }
+    }
+
 }

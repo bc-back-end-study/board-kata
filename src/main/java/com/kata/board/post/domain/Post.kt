@@ -1,7 +1,6 @@
 package com.kata.board.post.domain
 
 import com.kata.board.entity.BaseEntity
-import com.kata.board.user.domain.User
 import jakarta.persistence.*
 import org.hibernate.annotations.Comment
 
@@ -9,7 +8,6 @@ import org.hibernate.annotations.Comment
 class Post(
     title: String,
     content: String,
-    user: User
 ): BaseEntity() {
 
     @Id
@@ -30,8 +28,8 @@ class Post(
     var content: String = content
     private set
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
-    var user: User? = user
-    private set
-
+    fun update(title: String, content: String) {
+        this.title = title
+        this.content = content
+    }
 }
