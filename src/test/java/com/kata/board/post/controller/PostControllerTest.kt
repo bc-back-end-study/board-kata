@@ -50,7 +50,7 @@ class PostControllerTest {
     @DisplayName("게시글 전체 조회를 하는 경우 페이징 처리된 리스트를 반환한다.")
     fun `Should Paging Post Response When findAllPost`() {
         //given
-        val responseList = listOf(PagingResponse(1L, "title", "content", "username", 1, LocalDate.now()))
+        val responseList = listOf(PagingResponse(1L, "title", "content", 1, LocalDate.now()))
         val page = PageRequest.of(0, 5)
         `when`(postService.findAllPagenatedPost(any()))
             .thenReturn(PageImpl(responseList, page, 1))
