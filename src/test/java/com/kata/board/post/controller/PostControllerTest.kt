@@ -19,13 +19,9 @@ import org.springframework.data.domain.PageRequest
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.get
-import org.springframework.test.web.servlet.put
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
 import org.springframework.test.web.servlet.post
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers.print
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import org.springframework.test.web.servlet.setup.DefaultMockMvcBuilder
@@ -92,7 +88,6 @@ class PostControllerTest {
             .andExpect { jsonPath("$.content[0].id") { value("1")} }
             .andExpect { jsonPath("$.content[0].title") { value("title")} }
             .andExpect { jsonPath("$.content[0].content") { value("content")} }
-            .andExpect { jsonPath("$.content[0].username") { value("username")} }
             .andExpect { jsonPath("$.content[0].viewCount") { value(1)} }
     }
 
@@ -101,8 +96,8 @@ class PostControllerTest {
         //given
         val json = """
                 {
-                    "content": "content",
-                    "userId": 1
+                    "title": "",
+                    "content": "content"
                 }
             """
 
@@ -120,8 +115,8 @@ class PostControllerTest {
         //given
         val json = """
                 {
-                    "title": "title",                    
-                    "userId": 1
+                    "title": "title",
+                    "content": ""
                 }
             """
 
@@ -132,25 +127,6 @@ class PostControllerTest {
             .andExpect { status { isBadRequest() } }
             .andExpect { jsonPath("$.status") { value(400)} }
             .andExpect { jsonPath("$.message") { value("내용은 null 일 수 없습니다.")} }
-    }
-
-    @Test
-    fun `Should Throw Exception When userId Is Null`() {
-        //given
-        val json = """
-                {
-                    "title": "title",
-                    "content": "content"
-                }
-            """
-
-        //when
-        registPost(json)
-
-            //then
-            .andExpect { status { isBadRequest() } }
-            .andExpect { jsonPath("$.status") { value(400)} }
-            .andExpect { jsonPath("$.message") { value("유저 id는 필수 값입니다.")} }
     }
 
     private fun registPost(json: String) = mockMvc.post(POST_BASE_URL) {
@@ -167,8 +143,7 @@ class PostControllerTest {
         val json = """
                 {
                     "title": "title",
-                    "content": "content",
-                    "userId": 1
+                    "content": "content"
                 }
         """.trimIndent()
 
@@ -196,7 +171,8 @@ class PostControllerTest {
                 .characterEncoding(Charsets.UTF_8)
         )
             .andExpect(status().isBadRequest)
-            .andExpect(jsonPath("$.errorMessage").value(errorMessage))
+            .andExpect(jsonPath("$.status").value(400))
+            .andExpect(jsonPath("$.message").value(errorMessage))
     }
 
 }
