@@ -1,6 +1,5 @@
 package com.kata.board.post.service
 
-import com.kata.board.entity.User
 import com.kata.board.post.domain.Post
 import com.kata.board.post.repository.PostRepository
 import org.assertj.core.api.Assertions.assertThat
@@ -20,7 +19,7 @@ class PostServiceTest(
     @DisplayName("게시글 페이징 조회 시 정상 반환")
     fun `Should findAllPagenatedPost When getPostAll`() {
         //given
-        postRepository.save(Post("제목", "내용", User("유저명", "123", "별명", "test@gmail.com")))
+        postRepository.save(Post("제목", "내용"))
 
         //when
         val findAllPagenatedPost = postService.findAllPagenatedPost(PageRequest.of(0, 5))
@@ -31,7 +30,6 @@ class PostServiceTest(
             assertThat(result.id).isEqualTo(1L)
             assertThat(result.title).isEqualTo("제목")
             assertThat(result.content).isEqualTo("내용")
-            assertThat(result.username).isEqualTo("유저명")
             assertThat(result.viewCount).isZero
             assertThat(result.createdDate).isNotNull()
         })
