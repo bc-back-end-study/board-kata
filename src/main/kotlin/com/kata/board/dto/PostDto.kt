@@ -3,10 +3,9 @@ package com.kata.board.dto
 import java.time.LocalDateTime
 
 data class PostDto(
-    val id: Long? = null,
+    val id: Long,
     val title: String,
-    val userName: String? = null,
     val createdDate: LocalDateTime? = null,
-    var content: String? = null,
+    var content: String,
     var view: Int? = null,
 )

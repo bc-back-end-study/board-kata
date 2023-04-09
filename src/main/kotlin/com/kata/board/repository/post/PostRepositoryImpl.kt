@@ -21,9 +21,11 @@ class PostRepositoryImpl (
         return boardJpaRepository.findAll()
     }
 
-    override fun savePost(postDto: PostDto): Long? {
-        return boardJpaRepository.save(modelMapper.map(postDto,Post::class.java)).id
+    override fun savePost(postDto: PostDto): Post {
+        return boardJpaRepository.save(Post(content = postDto.content, title = postDto.title))
     }
 
-
+    override fun deletePost(postDto: PostDto) {
+        boardJpaRepository.delete(modelMapper.map(postDto,Post::class.java))
+    }
 }

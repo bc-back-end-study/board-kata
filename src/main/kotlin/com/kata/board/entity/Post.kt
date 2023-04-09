@@ -15,10 +15,6 @@ class Post constructor(
     @Comment("내용")
     private var content: String,
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private val user: User
-
 ) : BaseEntity() {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +27,6 @@ class Post constructor(
         return PostDto(
             id = this.id ?: throw IllegalArgumentException("Id Null Error"),
             title = this.title,
-            userName = this.user.userName,
             createdDate = this.createdDate?: throw IllegalArgumentException("Created Time Null Error"),
             content = this.content,
             view = this.view,

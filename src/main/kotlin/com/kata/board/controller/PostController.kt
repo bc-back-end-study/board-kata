@@ -25,4 +25,14 @@ class PostController (
     fun savePost(postDto: PostDto): ResponseEntity<Any> {
         return ResponseEntity.ok().body(postService.savePost(postDto))
     }
+
+    @DeleteMapping
+    fun deletePost(postDto: PostDto): ResponseEntity<Any> {
+         return ResponseEntity.ok().body(postService.deletePost(postDto))
+    }
+
+    @PutMapping
+    fun updatePost(postDto: PostDto): ResponseEntity<Any> {
+        return ResponseEntity.ok().body(postService.updatePost(postDto))
+    }
 }

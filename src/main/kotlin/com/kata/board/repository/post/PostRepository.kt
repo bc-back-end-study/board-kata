@@ -8,5 +8,7 @@ interface PostRepository {
 
     fun getAllPost(): List<Post>
 
-    fun savePost(postDto: PostDto): Long?
+    fun savePost(postDto: PostDto): Post
+
+    fun deletePost(postDto: PostDto)
 }
