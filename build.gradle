@@ -26,6 +26,7 @@ dependencies {
             'org.jetbrains.kotlin:kotlin-stdlib-jdk8',
             'org.projectlombok:lombok:1.18.22'
     )
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
     annotationProcessor (
             'org.projectlombok:lombok',

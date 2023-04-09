@@ -1,6 +1,6 @@
-package com.kata.borad.repository;
+package com.kata.board.repository;
 
-import com.kata.borad.entity.Post;
+import com.kata.board.entity.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
