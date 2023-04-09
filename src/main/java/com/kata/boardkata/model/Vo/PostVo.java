@@ -16,5 +16,5 @@ public class PostVo {
     private int view;
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
-    private String userId;
+    private Long userId;
 }

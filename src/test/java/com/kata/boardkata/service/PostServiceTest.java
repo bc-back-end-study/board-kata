@@ -13,9 +13,9 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -29,26 +29,35 @@ public class PostServiceTest {
 
     @Mock
     private UserRepository userRepository;
-
     @Test
     public void testInsertPost() {
         // Given
-        String userId = "testUser";
         PostVo postVo = new PostVo(1L,"test","testContent",0,
-                LocalDateTime.now(),LocalDateTime.now(),"ksh001");
-        postVo.setUserId(userId);
-
+                LocalDateTime.now(),LocalDateTime.now(),1L);
         User user = new User();
-        when(userRepository.findByUsername(userId)).thenReturn(user);
+        when(userRepository.findById(eq(postVo.getUserId()))).thenReturn(Optional.of(user));
 
         // When
         BaseResponse<PostVo> result = postService.insertPost(postVo);
 
         // Then
-        verify(userRepository, times(1)).findByUsername(userId);
+        verify(userRepository, times(1)).findById(eq(postVo.getUserId()));
         verify(postRepository, times(1)).save(any(Post.class));
         assertNotNull(result);
         assertEquals(postVo, result.getBody());
+    }
+
+    @Test
+    public void testInsertPostWithNonExistingUser() {
+        // Given
+        PostVo postVo = new PostVo(1L,"test","testContent",0,
+                LocalDateTime.now(),LocalDateTime.now(),1L);
+        when(userRepository.findById(eq(postVo.getUserId()))).thenReturn(Optional.empty());
+
+        // When/Then
+        assertThrows(CustomException.class, () -> postService.insertPost(postVo));
+        verify(userRepository, times(1)).findById(eq(postVo.getUserId()));
+        verify(postRepository, times(0)).save(any(Post.class));
     }
 
 }

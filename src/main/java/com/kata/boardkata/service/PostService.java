@@ -41,9 +41,9 @@ public class PostService {
      */
     @Transactional
     public BaseResponse<PostVo> insertPost(PostVo postVo) {
-        User user = userRepository.findByUsername(postVo.getUserId());
-        //todo : 커스텀 익셉션 추가
-        postRepository.save(new Post(postVo,user));
+        User user = userRepository.findById(postVo.getUserId())
+                .orElseThrow(() -> new CustomException("User not found")); // 커스텀 예외 처리
+        postRepository.save(new Post(postVo, user));
         return new BaseResponse<>(postVo);
     }
 }
