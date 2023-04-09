@@ -2,6 +2,7 @@ package com.kata.board.post.service
 
 import com.kata.board.post.domain.DateUtils
 import com.kata.board.post.domain.PostReadRepository
+import com.kata.board.post.service.request.PostUpdateRequest
 import com.kata.board.post.service.response.PagingResponse
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
@@ -9,8 +10,8 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-@Transactional
-class PostService(
+@Transactional(readOnly = true)
+class PostService (
     private val postReadRepository: PostReadRepository
 ) {
     fun findAllPagenatedPost(page: Pageable): Page<PagingResponse> {
@@ -20,10 +21,15 @@ class PostService(
                 post.id,
                 post.title,
                 post.content,
-                post.user?.username,
                 post.view,
                 DateUtils.convertToLocalDate(post.createdDate)
             )
         }
+    }
+
+    @Transactional
+    fun updatePost(id: Long, request: PostUpdateRequest) {
+        val post = postReadRepository.findById(id)
+        post.update(request.title, request.content)
     }
 }
