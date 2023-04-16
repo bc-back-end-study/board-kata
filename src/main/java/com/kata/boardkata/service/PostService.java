@@ -1,6 +1,5 @@
 package com.kata.boardkata.service;
 
-import com.fasterxml.jackson.databind.ser.Serializers;
 import com.kata.boardkata.entity.Post;
 import com.kata.boardkata.entity.User;
 import com.kata.boardkata.model.dto.PostDto;
