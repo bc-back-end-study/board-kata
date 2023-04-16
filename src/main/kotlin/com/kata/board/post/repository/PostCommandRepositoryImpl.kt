@@ -13,4 +13,8 @@ class PostCommandRepositoryImpl(
         return postRepository.save(post)
     }
 
+    override fun delete(id: Long) {
+        postRepository.deleteById(id)
+    }
+
 }
