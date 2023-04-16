@@ -59,5 +59,4 @@ public class PostServiceTest {
         verify(userRepository, times(1)).findById(eq(postVo.getUserId()));
         verify(postRepository, times(0)).save(any(Post.class));
     }
-
 }
