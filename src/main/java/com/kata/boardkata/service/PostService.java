@@ -1,10 +1,12 @@
 package com.kata.boardkata.service;
 
+import com.fasterxml.jackson.databind.ser.Serializers;
 import com.kata.boardkata.entity.Post;
 import com.kata.boardkata.entity.User;
 import com.kata.boardkata.model.dto.PostDto;
 import com.kata.boardkata.model.Vo.PostVo;
 import com.kata.boardkata.model.response.BaseResponse;
+import com.kata.boardkata.model.response.PostResponse;
 import com.kata.boardkata.model.response.PostsResponse;
 import com.kata.boardkata.repository.PostRepository;
 import com.kata.boardkata.repository.UserRepository;
@@ -13,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -45,5 +48,15 @@ public class PostService {
                 .orElseThrow(() -> new CustomException("User not found")); // 커스텀 예외 처리
         postRepository.save(new Post(postVo, user));
         return new BaseResponse<>(postVo);
+    }
+
+    @Transactional
+    public BaseResponse<PostResponse> removePost(Long postId) {
+        Optional<Post> removePost = postRepository.findById(postId);
+        if(removePost.isEmpty()) {
+            throw new CustomException("Post not found");
+        }
+        postRepository.deleteById(postId);
+        return new BaseResponse<>(PostResponse.makeToPostResponse(removePost.get()));
     }
 }

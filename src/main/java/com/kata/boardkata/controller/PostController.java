@@ -2,6 +2,7 @@ package com.kata.boardkata.controller;
 
 import com.kata.boardkata.model.Vo.PostVo;
 import com.kata.boardkata.model.response.BaseResponse;
+import com.kata.boardkata.model.response.PostResponse;
 import com.kata.boardkata.model.response.PostsResponse;
 import com.kata.boardkata.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -26,5 +27,10 @@ public class PostController {
     @PostMapping
     public BaseResponse<PostVo> createPost(@RequestBody PostVo postVo) {
         return postService.insertPost(postVo);
+    }
+
+    @DeleteMapping
+    public BaseResponse<PostResponse> deletePost(@RequestParam Long id) {
+        return postService.removePost(id);
     }
 }
