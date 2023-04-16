@@ -1,5 +1,6 @@
 package com.kata.boardkata.controller;
 
+import com.kata.boardkata.model.Vo.PostVo;
 import com.kata.boardkata.model.response.BaseResponse;
 import com.kata.boardkata.model.response.PostsResponse;
 import com.kata.boardkata.service.PostService;
@@ -21,5 +22,9 @@ public class PostController {
     ){
         return postService.getPostPageList(
                 PageRequest.of(page, size, Sort.by(Sort.Direction.DESC,"modifiedDate")));
+    }
+    @PostMapping
+    public BaseResponse<PostVo> createPost(@RequestBody PostVo postVo) {
+        return postService.insertPost(postVo);
     }
 }

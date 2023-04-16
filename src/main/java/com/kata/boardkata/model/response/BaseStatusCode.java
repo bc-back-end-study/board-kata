@@ -3,8 +3,6 @@ package com.kata.boardkata.model.response;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-import java.awt.image.PixelGrabber;
-
 @Getter
 @RequiredArgsConstructor
 public enum BaseStatusCode {

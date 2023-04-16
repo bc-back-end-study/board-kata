@@ -16,7 +16,7 @@ public class PostDto {
     private String userName;
     private int view;
     private LocalDateTime createdDate;
-    public static PostDto makeToPostDto(Post post) {
+    public static PostDto PostToPostDto(Post post) {
         PostDto postDto = new PostDto();
         postDto.setView(post.getView());
         postDto.setTitle(post.getTitle());
