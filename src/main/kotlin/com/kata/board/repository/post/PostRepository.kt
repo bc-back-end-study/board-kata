@@ -10,5 +10,5 @@ interface PostRepository {
 
     fun savePost(postDto: PostDto): Post
 
-    fun deletePost(postDto: PostDto)
+    fun deletePost(id: Long)
 }

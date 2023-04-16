@@ -8,6 +8,10 @@ import java.lang.IllegalArgumentException
 @Entity
 class Post constructor(
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long? = null,
+
     @Comment("제목")
     var title: String,
 
@@ -16,9 +20,6 @@ class Post constructor(
     private var content: String,
 
 ) : BaseEntity() {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long? = null
 
     @Comment("조회수")
     private var view: Int = 0

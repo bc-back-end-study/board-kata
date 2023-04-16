@@ -15,6 +15,7 @@ data class PostDto (
 ) {
     fun convertPostDtoFromPost(): Post {
         return Post(
+            id = this.id,
             title = this.title,
             content = this.content,
             )

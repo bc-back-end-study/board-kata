@@ -28,8 +28,8 @@ class PostController (
     }
 
     @DeleteMapping
-    fun deletePost(postDto: PostDto): ResponseEntity<Any> {
-        postService.deletePost(postDto)
+    fun deletePost(id: Long): ResponseEntity<Any> {
+        postService.deletePost(id)
          return ResponseEntity.ok().build()
     }
 

@@ -24,7 +24,7 @@ class PostRepositoryImpl (
         return boardJpaRepository.save(postDto.convertPostDtoFromPost())
     }
 
-    override fun deletePost(postDto: PostDto) {
-        boardJpaRepository.delete(postDto.convertPostDtoFromPost())
+    override fun deletePost(id: Long) {
+        boardJpaRepository.deleteById(id)
     }
 }

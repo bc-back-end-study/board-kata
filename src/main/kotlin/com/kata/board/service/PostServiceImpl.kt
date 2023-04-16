@@ -22,8 +22,8 @@ class PostServiceImpl(
         return postRepository.savePost(postDto)
     }
 
-    override fun deletePost(postDto: PostDto) {
-        postRepository.deletePost(postDto)
+    override fun deletePost(id: Long) {
+        postRepository.deletePost(id)
     }
 
     override fun updatePost(postDto: PostDto): Post {
