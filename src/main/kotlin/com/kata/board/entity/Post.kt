@@ -28,6 +28,7 @@ class Post constructor(
             id = this.id ?: throw IllegalArgumentException("Id Null Error"),
             title = this.title,
             createdDate = this.createdDate?: throw IllegalArgumentException("Created Time Null Error"),
+            modifiedDate = this.modifiedDate?: throw IllegalArgumentException("Modified Time Null Error"),
             content = this.content,
             view = this.view,
         )

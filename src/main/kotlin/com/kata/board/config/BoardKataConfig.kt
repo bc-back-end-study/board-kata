@@ -6,10 +6,4 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 class BoardKataConfig {
-    @Bean
-    fun modelMapper(): ModelMapper {
-        val modelMapper = ModelMapper()
-        modelMapper.configuration.isFieldMatchingEnabled = true
-        return modelMapper
-    }
 }

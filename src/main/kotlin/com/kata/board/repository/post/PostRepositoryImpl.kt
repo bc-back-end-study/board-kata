@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository
 @Repository
 class PostRepositoryImpl (
     private val boardJpaRepository: BoardJpaRepository,
-    @Autowired private val modelMapper: ModelMapper
 ): PostRepository {
     override fun getPost(id: Long): Post {
         return boardJpaRepository.findById(id).get()
@@ -22,10 +21,10 @@ class PostRepositoryImpl (
     }
 
     override fun savePost(postDto: PostDto): Post {
-        return boardJpaRepository.save(modelMapper.map(postDto,Post::class.java))
+        return boardJpaRepository.save(postDto.convertPostDtoFromPost())
     }
 
     override fun deletePost(postDto: PostDto) {
-        boardJpaRepository.delete(modelMapper.map(postDto,Post::class.java))
+        boardJpaRepository.delete(postDto.convertPostDtoFromPost())
     }
 }
