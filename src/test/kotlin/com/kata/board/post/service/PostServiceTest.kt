@@ -5,6 +5,7 @@ import com.kata.board.post.repository.PostRepository
 import com.kata.board.post.service.request.PostRequest
 import com.kata.board.post.service.request.PostUpdateRequest
 import com.kata.board.util.BoardBootTest
+import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertAll
@@ -78,6 +79,15 @@ class PostServiceTest(
         val updatedPost = postRepository.findById(save.id!!).get()
         assertThat(updatedPost.title).isEqualTo("제목")
         assertThat(updatedPost.content).isEqualTo("내용")
+    }
+
+    @Test
+    fun `Should delete Post When exist post id`(){
+        val savedPost = postRepository.save(Post("title", "content"))
+
+        assertThatCode { postService.deletePost(savedPost.id!!) }.doesNotThrowAnyException()
+        assertThat(postRepository.existsById(savedPost.id!!)).isFalse()
+
     }
 }
 
