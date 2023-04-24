@@ -5,11 +5,13 @@ import com.kata.boardkata.entity.User;
 import com.kata.boardkata.model.dto.PostDto;
 import com.kata.boardkata.model.Vo.PostVo;
 import com.kata.boardkata.model.response.BaseResponse;
+import com.kata.boardkata.model.response.BaseStatusCode;
 import com.kata.boardkata.model.response.PostResponse;
 import com.kata.boardkata.model.response.PostsResponse;
 import com.kata.boardkata.repository.PostRepository;
 import com.kata.boardkata.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.logging.LogLevel;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,7 +46,7 @@ public class PostService {
     @Transactional
     public BaseResponse<PostVo> insertPost(PostVo postVo) {
         User user = userRepository.findById(postVo.getUserId())
-                .orElseThrow(() -> new CustomException("User not found")); // 커스텀 예외 처리
+                .orElseThrow(() -> new CustomException(BaseStatusCode.USER_NOT_FOUND, LogLevel.WARN)); // 커스텀 예외 처리
         postRepository.save(new Post(postVo, user));
         return new BaseResponse<>(postVo);
     }
@@ -53,7 +55,7 @@ public class PostService {
     public BaseResponse<PostResponse> removePost(Long postId) {
         Optional<Post> removePost = postRepository.findById(postId);
         if(removePost.isEmpty()) {
-            throw new CustomException("Post not found");
+            throw new CustomException(BaseStatusCode.POST_NOT_FOUND,LogLevel.WARN);
         }
         postRepository.deleteById(postId);
         return new BaseResponse<>(PostResponse.makeToPostResponse(removePost.get()));
