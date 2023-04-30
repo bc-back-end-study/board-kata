@@ -41,4 +41,9 @@ class PostService (
         val post = postReadRepository.findById(id)
         post.update(request.title, request.content)
     }
+
+    @Transactional
+    fun deletePost(id: Long) {
+        postCommandRepository.delete(id)
+    }
 }

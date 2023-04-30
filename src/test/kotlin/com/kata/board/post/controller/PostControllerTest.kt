@@ -18,8 +18,10 @@ import org.springframework.data.domain.PageImpl
 import org.springframework.data.domain.PageRequest
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
+import org.springframework.test.web.servlet.delete
 import org.springframework.test.web.servlet.get
 import org.springframework.test.web.servlet.post
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers.print
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
@@ -175,4 +177,9 @@ class PostControllerTest {
             .andExpect(jsonPath("$.message").value(errorMessage))
     }
 
+    @Test
+    fun `Should delete Post When request post id`() {
+        mockMvc.delete(POST_BASE_URL + "/1")
+            .andExpect { status { isOk() } }
+    }
 }
