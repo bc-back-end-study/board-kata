@@ -10,7 +10,7 @@ interface PostService {
 
     fun savePost(postDto: PostDto): Post
 
-    fun deletePost(postDto: PostDto)
+    fun deletePost(id: Long)
 
     fun updatePost(postDto: PostDto): Post
 }
